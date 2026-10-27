@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Order delicious food online with FoodieHub.">
+  <title>FoodieHub | Food Delivery</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">F</span> Foodie<span>Hub</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" class="active">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="dashboard.html">My Orders</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+
+    <a href="cart.html" class="cart-link">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">GOOD FOOD, GOOD MOOD ✨</span>
+
+        <h1>Your favourite food,<br>
+          <span>delivered fresh.</span>
+        </h1>
+
+        <p>
+          From delicious burgers to authentic Indian meals,
+          discover food that makes every bite special.
+        </p>
+
+        <div class="hero-actions">
+          <a href="menu.html" class="btn btn-primary">
+            Explore Menu →
+          </a>
+          <a href="dashboard.html" class="btn btn-outline">
+            Track My Orders
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div><strong>30+</strong><small>Food items</small></div>
+          <div><strong>7</strong><small>Categories</small></div>
+          <div><strong>Fresh</strong><small>Every order</small></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85"
+            alt="Freshly prepared cheeseburger"
+          >
+        </div>
+        <div class="floating-card">
+          <span>🍔</span>
+          <div>
+            <strong>Fresh & tasty</strong>
+            <small>Made for your cravings</small>
+          </div>
+        </div>
+        <div class="hero-decoration decoration-one"></div>
+        <div class="hero-decoration decoration-two"></div>
+      </div>
+    </section>
+
+    <section class="section categories-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">EXPLORE OUR MENU</span>
+          <h2>What are you craving?</h2>
+          <p>Find something delicious for every mood.</p>
+        </div>
+        <a href="menu.html" class="text-link">View all food →</a>
+      </div>
+
+      <div class="category-grid" id="categoryGrid">
+        <!-- Categories are rendered by app.js -->
+      </div>
+    </section>
+
+    <section class="section featured-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">CUSTOMER FAVOURITES</span>
+          <h2>Popular right now</h2>
+          <p>Explore some of our most tempting picks.</p>
+        </div>
+        <a href="menu.html" class="text-link">Explore menu →</a>
+      </div>
+
+      <div class="food-grid" id="featuredFoods">
+        <!-- Food cards are rendered by app.js -->
+      </div>
+    </section>
+
+    <section class="promo-banner">
+      <div>
+        <span class="eyebrow">YOUR NEXT MEAL IS WAITING</span>
+        <h2>Big cravings. Delicious solutions.</h2>
+        <p>Browse the menu, build your cart, and place a demo order.</p>
+      </div>
+      <a href="menu.html" class="btn btn-light">Order Now →</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">F</span> Foodie<span>Hub</span>
+    </a>
+    <p>Good food, delivered with love.</p>
+    <div class="footer-links">
+      <a href="menu.html">Menu</a>
+      <a href="dashboard.html">My Orders</a>
+      <a href="admin.html">Admin</a>
+    </div>
+    <p class="copyright">
+      © <span id="currentYear"></span> FoodieHub. Demo project.
+    </p>
+  </footer>
+</body>
+</html>

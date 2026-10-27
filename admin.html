@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | FoodieHub</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/admin.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Foodie<span>Hub</span></a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+      >
+        ☰
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="cart.html">
+          Cart <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <a href="dashboard.html">My Orders</a>
+        <a href="admin.html" aria-current="page">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="page-container">
+        <span class="eyebrow">FoodieHub Control Center</span>
+        <h1>Admin <span>Panel</span></h1>
+        <p>Manage your food catalog and customer orders.</p>
+      </div>
+    </section>
+
+    <section class="page-container admin-container">
+
+      <!-- ADMIN LOGIN -->
+      <section id="adminLoginSection" class="panel admin-login-panel">
+        <h2>Administrator Login</h2>
+        <p class="muted-text">
+          Sign in to manage foods and customer orders.
+        </p>
+
+        <form id="adminLoginForm" class="stack">
+          <div>
+            <label for="adminUsername">Username</label>
+            <input
+              class="form-control"
+              type="text"
+              id="adminUsername"
+              autocomplete="username"
+              placeholder="Enter admin username"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="adminPassword">Password</label>
+            <input
+              class="form-control"
+              type="password"
+              id="adminPassword"
+              autocomplete="current-password"
+              placeholder="Enter admin password"
+              required
+            >
+          </div>
+
+          <p id="loginMessage" class="notice" role="status" hidden></p>
+
+          <button type="submit" class="btn btn-primary">
+            Login to Admin
+          </button>
+        </form>
+
+        <p class="muted-text admin-demo-note">
+          Demo credentials are configured in the frontend JavaScript.
+        </p>
+      </section>
+
+      <!-- ADMIN DASHBOARD -->
+      <section id="adminDashboard" hidden>
+
+        <div class="admin-topbar">
+          <div>
+            <h2>Welcome, Admin!</h2>
+            <p class="muted-text">Manage your store from here.</p>
+          </div>
+
+          <button type="button" id="adminLogoutBtn" class="btn btn-outline">
+            Logout
+          </button>
+        </div>
+
+        <div class="dashboard-stats admin-stats">
+          <article class="panel dashboard-stat">
+            <span>Total Food Items</span>
+            <strong id="adminFoodCount">0</strong>
+          </article>
+
+          <article class="panel dashboard-stat">
+            <span>Total Orders</span>
+            <strong id="adminOrderCount">0</strong>
+          </article>
+
+          <article class="panel dashboard-stat">
+            <span>Pending Orders</span>
+            <strong id="adminPendingCount">0</strong>
+          </article>
+
+          <article class="panel dashboard-stat">
+            <span>Delivered Orders</span>
+            <strong id="adminDeliveredCount">0</strong>
+          </article>
+        </div>
+
+        <div id="adminNotice" class="notice" role="status" hidden></div>
+
+        <!-- FOOD MANAGEMENT -->
+        <section class="panel admin-section">
+          <div class="admin-section-heading">
+            <div>
+              <h2>Food Management</h2>
+              <p class="muted-text">Create, edit, and remove menu items.</p>
+            </div>
+          </div>
+
+          <form id="foodForm" class="admin-food-form">
+            <input type="hidden" id="foodId">
+
+            <div>
+              <label for="foodName">Food Name</label>
+              <input
+                class="form-control"
+                id="foodName"
+                type="text"
+                minlength="2"
+                maxlength="80"
+                placeholder="e.g. Cheese Burger"
+                required
+              >
+            </div>
+
+            <div>
+              <label for="foodCategory">Category</label>
+              <select class="form-control" id="foodCategory" required></select>
+            </div>
+
+            <div>
+              <label for="foodPrice">Price (₹)</label>
+              <input
+                class="form-control"
+                id="foodPrice"
+                type="number"
+                min="1"
+                max="100000"
+                step="0.01"
+                required
+              >
+            </div>
+
+            <div>
+              <label for="foodRating">Rating (0–5)</label>
+              <input
+                class="form-control"
+                id="foodRating"
+                type="number"
+                min="0"
+                max="5"
+                step="0.1"
+                value="4.5"
+                required
+              >
+            </div>
+
+            <div>
+              <label for="foodTag">Food Tag</label>
+              <input
+                class="form-control"
+                id="foodTag"
+                type="text"
+                maxlength="30"
+                placeholder="e.g. Bestseller"
+              >
+            </div>
+
+            <div class="admin-full-width">
+              <label for="foodDescription">Description</label>
+              <textarea
+                class="form-control"
+                id="foodDescription"
+                rows="3"
+                maxlength="300"
+                placeholder="Describe the food item"
+                required
+              ></textarea>
+            </div>
+
+            <div class="admin-full-width">
+              <label for="foodImage">Image URL</label>
+              <input
+                class="form-control"
+                id="foodImage"
+                type="url"
+                placeholder="https://example.com/food.jpg"
+                required
+              >
+            </div>
+
+            <div class="admin-form-actions admin-full-width">
+              <button type="submit" id="saveFoodBtn" class="btn btn-primary">
+                Add Food Item
+              </button>
+
+              <button
+                type="button"
+                id="cancelEditBtn"
+                class="btn btn-outline"
+                hidden
+              >
+                Cancel Edit
+              </button>
+            </div>
+          </form>
+
+          <div class="admin-table-heading">
+            <h3>Current Menu</h3>
+            <span id="foodTableCount" class="muted-text">0 items</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Food</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Rating</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminFoodTable"></tbody>
+            </table>
+          </div>
+
+          <p id="emptyFoodTable" class="muted-text" hidden>
+            No food items found. Add your first food item above.
+          </p>
+        </section>
+
+        <!-- ORDER MANAGEMENT -->
+        <section class="panel admin-section">
+          <div class="admin-section-heading">
+            <div>
+              <h2>Order Management</h2>
+              <p class="muted-text">
+                Review customer orders and update delivery statuses.
+              </p>
+            </div>
+
+            <button type="button" id="refreshAdminOrdersBtn" class="btn btn-outline">
+              Refresh Orders
+            </button>
+          </div>
+
+          <div class="admin-order-filters">
+            <div>
+              <label for="adminOrderSearch">Search Orders</label>
+              <input
+                class="form-control"
+                type="search"
+                id="adminOrderSearch"
+                placeholder="Search order ID or customer"
+              >
+            </div>
+
+            <div>
+              <label for="adminOrderStatusFilter">Filter Status</label>
+              <select class="form-control" id="adminOrderStatusFilter">
+                <option value="all">All Orders</option>
+                <option value="Pending">Pending</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                  <th>Order Status</th>
+                  <th>Update</th>
+                </tr>
+              </thead>
+              <tbody id="adminOrderTable"></tbody>
+            </table>
+          </div>
+
+          <p id="emptyAdminOrders" class="muted-text" hidden>
+            No orders match your filters.
+          </p>
+        </section>
+
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-container">
+      <p>
+        © <span id="currentYear"></span> FoodieHub. Made with ❤️ for food lovers.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

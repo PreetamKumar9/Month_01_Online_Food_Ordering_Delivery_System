@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders | FoodieHub</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/dashboard.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Foodie<span>Hub</span></a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+      >
+        ☰
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="cart.html">
+          Cart <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <a href="dashboard.html" aria-current="page">My Orders</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="page-container">
+        <span class="eyebrow">Your FoodieHub Account</span>
+        <h1>My <span>Orders</span></h1>
+        <p>Track your deliveries and revisit your previous orders.</p>
+      </div>
+    </section>
+
+    <section class="page-container dashboard-container">
+
+      <div class="dashboard-welcome">
+        <div>
+          <h2>Your Order History</h2>
+          <p class="muted-text">
+            Your saved orders stay available in this browser.
+          </p>
+        </div>
+
+        <a href="menu.html" class="btn btn-primary">
+          + Order More Food
+        </a>
+      </div>
+
+      <div class="dashboard-stats">
+        <article class="panel dashboard-stat">
+          <span>Total Orders</span>
+          <strong id="totalOrders">0</strong>
+        </article>
+
+        <article class="panel dashboard-stat">
+          <span>Active Orders</span>
+          <strong id="activeOrders">0</strong>
+        </article>
+
+        <article class="panel dashboard-stat">
+          <span>Delivered Orders</span>
+          <strong id="deliveredOrders">0</strong>
+        </article>
+
+        <article class="panel dashboard-stat">
+          <span>Total Order Value</span>
+          <strong id="totalSpent">₹0</strong>
+        </article>
+      </div>
+
+      <div class="panel dashboard-filters">
+        <div class="dashboard-filter-field">
+          <label for="orderSearch">Search Orders</label>
+          <input
+            class="form-control"
+            type="search"
+            id="orderSearch"
+            placeholder="Search order ID, food or customer"
+          >
+        </div>
+
+        <div class="dashboard-filter-field">
+          <label for="statusFilter">Filter by Status</label>
+          <select class="form-control" id="statusFilter">
+            <option value="all">All Orders</option>
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Out for Delivery">Out for Delivery</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        </div>
+
+        <button type="button" id="refreshOrdersBtn" class="btn btn-outline">
+          Refresh Orders
+        </button>
+      </div>
+
+      <div class="dashboard-results-heading">
+        <h2>Previous Orders</h2>
+        <span id="orderCount" class="muted-text">0 orders</span>
+      </div>
+
+      <div id="dashboardNotice" class="notice" role="status" hidden></div>
+
+      <div id="ordersContainer" class="orders-container"></div>
+
+      <div id="emptyOrders" class="panel empty-state" hidden>
+        <div class="empty-orders-icon">🍽️</div>
+        <h2>No Orders Found</h2>
+        <p id="emptyOrdersMessage">
+          Your order history will appear here after your first order.
+        </p>
+        <a href="menu.html" class="btn btn-primary">Explore Food Menu</a>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-container">
+      <p>
+        © <span id="currentYear"></span> FoodieHub. Made with ❤️ for food lovers.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

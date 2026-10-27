@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | FoodieHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/checkout.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Foodie<span>Hub</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="cart.html">Cart <span class="cart-count" id="cartCount">0</span></a>
+        <a href="dashboard.html">My Orders</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="page-container">
+        <span class="eyebrow">Almost there!</span>
+        <h1>Secure Your <span>Order</span></h1>
+        <p>Enter your delivery details and review your final bill.</p>
+      </div>
+    </section>
+
+    <section class="page-container checkout-layout" id="checkoutContent">
+
+      <div class="panel checkout-form-panel">
+        <h2>Delivery Details</h2>
+        <p class="muted-text">Where should we deliver your food?</p>
+
+        <form id="checkoutForm" class="stack">
+
+          <div>
+            <label for="customerName">Full Name</label>
+            <input
+              class="form-control"
+              type="text"
+              id="customerName"
+              name="customerName"
+              placeholder="Enter your full name"
+              minlength="2"
+              maxlength="80"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="customerPhone">Mobile Number</label>
+            <input
+              class="form-control"
+              type="tel"
+              id="customerPhone"
+              name="customerPhone"
+              placeholder="10-digit mobile number"
+              pattern="[6-9][0-9]{9}"
+              title="Enter a valid 10-digit Indian mobile number"
+              maxlength="10"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="customerAddress">Delivery Address</label>
+            <textarea
+              class="form-control"
+              id="customerAddress"
+              name="customerAddress"
+              rows="4"
+              minlength="10"
+              maxlength="400"
+              placeholder="House number, street, area, city and PIN code"
+              required
+            ></textarea>
+          </div>
+
+          <div>
+            <label for="paymentMethod">Payment Method</label>
+            <select
+              class="form-control"
+              id="paymentMethod"
+              name="paymentMethod"
+              required
+            >
+              <option value="cod">Cash on Delivery</option>
+              <option value="upi">Demo UPI Payment</option>
+              <option value="card">Demo Card Payment</option>
+            </select>
+          </div>
+
+          <div id="demoPaymentOptions" class="notice" hidden>
+            <strong>Demo payment only</strong>
+            <p>No real money will be charged. Select an outcome to test the payment flow.</p>
+
+            <label for="paymentResult">Simulated Payment Result</label>
+            <select class="form-control" id="paymentResult">
+              <option value="success">Payment Successful</option>
+              <option value="failure">Payment Failed</option>
+            </select>
+          </div>
+
+          <div id="checkoutNotice" class="notice" role="status" hidden></div>
+
+          <button type="submit" id="placeOrderBtn" class="btn btn-primary">
+            Place Order
+          </button>
+
+          <a href="cart.html" class="btn btn-outline">Back to Cart</a>
+        </form>
+      </div>
+
+      <aside class="panel checkout-summary">
+        <h2>Order Summary</h2>
+
+        <div id="checkoutSummary">
+          <p class="muted-text">Loading your cart...</p>
+        </div>
+
+        <div class="bill-row">
+          <span>Subtotal</span>
+          <strong id="checkoutSubtotal">₹0.00</strong>
+        </div>
+
+        <div class="bill-row">
+          <span>Delivery Fee</span>
+          <strong id="checkoutDelivery">₹0.00</strong>
+        </div>
+
+        <div class="bill-row">
+          <span>Tax (5%)</span>
+          <strong id="checkoutTax">₹0.00</strong>
+        </div>
+
+        <div class="bill-row bill-total">
+          <span>Total Payable</span>
+          <strong id="checkoutTotal">₹0.00</strong>
+        </div>
+
+        <p class="muted-text">
+          Free delivery on orders of ₹499 or more.
+        </p>
+      </aside>
+
+    </section>
+
+    <section class="page-container" id="orderSuccess" hidden>
+      <div class="panel checkout-success">
+        <div class="success-icon">✓</div>
+        <h2>Order Placed Successfully!</h2>
+        <p id="successMessage">Your order has been saved.</p>
+        <p>Order ID: <strong id="successOrderId"></strong></p>
+        <p>Total: <strong id="successOrderTotal"></strong></p>
+
+        <div class="success-actions">
+          <a href="dashboard.html" class="btn btn-primary">Track My Order</a>
+          <a href="menu.html" class="btn btn-outline">Order More Food</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-container">
+      <p>© <span id="currentYear"></span> FoodieHub. Made with ❤️ for food lovers.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
